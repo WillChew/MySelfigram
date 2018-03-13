@@ -17,6 +17,7 @@
 		21A7ED96204E956300A5C65E /* SelfigramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A7ED95204E956300A5C65E /* SelfigramTests.swift */; };
 		21A7EDA1204E956300A5C65E /* SelfigramUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A7EDA0204E956300A5C65E /* SelfigramUITests.swift */; };
 		21A7EDAF204E9EE000A5C65E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A7EDAE204E9EE000A5C65E /* ProfileViewController.swift */; };
+		21C85197205746BE005FA4CF /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C85196205746BE005FA4CF /* FeedViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		21A7EDA0204E956300A5C65E /* SelfigramUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfigramUITests.swift; sourceTree = "<group>"; };
 		21A7EDA2204E956300A5C65E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21A7EDAE204E9EE000A5C65E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		21C85196205746BE005FA4CF /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				21A7ED82204E956200A5C65E /* ViewController.swift */,
 				21A27EBE2050CAC000E0B082 /* User.swift */,
 				21A27EC02050CC1400E0B082 /* Post.swift */,
+				21C85196205746BE005FA4CF /* FeedViewController.swift */,
 				21A7ED84204E956200A5C65E /* Main.storyboard */,
 				21A7EDAE204E9EE000A5C65E /* ProfileViewController.swift */,
 				21A7ED87204E956200A5C65E /* Assets.xcassets */,
@@ -272,6 +275,7 @@
 				21A7EDAF204E9EE000A5C65E /* ProfileViewController.swift in Sources */,
 				21A7ED83204E956200A5C65E /* ViewController.swift in Sources */,
 				21A7ED81204E956200A5C65E /* AppDelegate.swift in Sources */,
+				21C85197205746BE005FA4CF /* FeedViewController.swift in Sources */,
 				21A27EC12050CC1400E0B082 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
