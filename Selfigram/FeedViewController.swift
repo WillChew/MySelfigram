@@ -21,7 +21,7 @@ class FeedViewController: UITableViewController {
         // Our definition of Post did not include the possibility of a nil UIImage
         // so, therefore we have to add a ! at the end of it
         
-        let me = User(aUsername: "danny", aProfileImage: UIImage(named: "Grumpy-Cat")!)
+        let me = User(aUsername: "Will", aProfileImage: UIImage(named: "Grumpy-Cat")!)
         let post0 = Post(image: UIImage(named: "Grumpy-Cat")!, user: me, comment: "Grumpy Cat 0")
         let post1 = Post(image: UIImage(named: "Grumpy-Cat")!, user: me, comment: "Grumpy Cat 1")
         let post2 = Post(image: UIImage(named: "Grumpy-Cat")!, user: me, comment: "Grumpy Cat 2")
@@ -49,7 +49,7 @@ class FeedViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return posts.count
     }
 
     
