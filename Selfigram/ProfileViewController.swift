@@ -7,18 +7,35 @@
 //
 
 import UIKit
+import Parse
 
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        usernameLabel.text = "yourName"
-        // Do any additional setup after loading the view.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let user = PFUser.current() {
+            usernameLabel.text = user.username
+            
+            if let imageFile = user["avatarImage"] as? PFFile {
+                
+                imageFile.getDataInBackground(block: {(data, error) -> Void in
+                    if let imageData = data {
+                        self.profileImageView.image = UIImage(data: imageData)
+                    }
+                })
+            }
+        }
     }
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//        usernameLabel.text = "yourName"
+//        // Do any additional setup after loading the view.
+//    }
     @IBAction func cameraButtonPressed(_ sender: Any) {
         // 1: Create an ImagePickerController
         let pickerController = UIImagePickerController()
@@ -52,9 +69,22 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         //    We are getting an image from the UIImagePickerControllerOriginalImage key in that dictionary
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             
-            
-            //2. To our imageView, we set the image property to be the image the user has chosen
-            profileImageView.image = image
+            //Setting the compression quality to 90%
+            if let imageData = UIImageJPEGRepresentation(image, 0.9),
+            let imageFile = PFFile(data: imageData),
+            let user = PFUser.current(){
+                
+                
+        //avatarImage is a new column in our User table
+                user["avatarImage"] = imageFile
+                user.saveInBackground(block: {(success, error) -> Void in
+                    if success {
+                        //set our profileImageView to be the image we have picked
+                        let image = UIImage(data: imageData)
+                        print("avatarImage successfully saved")
+                    }
+                })
+            }
             
         }
         
@@ -73,7 +103,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
