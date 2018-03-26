@@ -15,7 +15,7 @@ class FeedViewController: UITableViewController, UIImagePickerControllerDelegate
     
     override func viewDidLoad() {
         if let query = Post.query(){
-            query.order(byDescending: "createdAat")
+            query.order(byDescending: "createdAt")
             query.includeKey("user")
             
             query.findObjectsInBackground(block: {(posts, error) -> Void in
