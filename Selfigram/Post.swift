@@ -11,6 +11,12 @@ import Parse
 
 class Post: PFObject, PFSubclassing {
     
+    var likes: PFRelation<PFObject>!{
+        //PFRelations are a bit different from just regular properties
+        //this is called a "computer property", because it's value is computed everytime instead of stored
+        //the line below specifies that our relation column on Parse should be called "likes"
+        return relation(forKey: "likes")
+    }
     @NSManaged var image:PFFile
     @NSManaged var user:PFUser
     @NSManaged var comment:String

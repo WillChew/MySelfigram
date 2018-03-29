@@ -22,6 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             clientConfiguration.applicationId = "willchew"
             clientConfiguration.server = "https://pure-tor-20462.herokuapp.com/parse"
         }
+        
+        Post.registerSubclass()
+        Activity.registerSubclass()
+        
         Parse.initialize(with: configuration)
         
         let user = PFUser()

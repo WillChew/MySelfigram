@@ -14,6 +14,8 @@ class FeedViewController: UITableViewController, UIImagePickerControllerDelegate
     var posts = [Post]()
     
     override func viewDidLoad() {
+            super.viewDidLoad()
+        
         if let query = Post.query(){
             query.order(byDescending: "createdAt")
             query.includeKey("user")
@@ -47,23 +49,25 @@ class FeedViewController: UITableViewController, UIImagePickerControllerDelegate
         let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! SelfieCell
         
         let post = self.posts[indexPath.row]
+        
+        cell.post = post
         // I've added this line to prevent flickering of images
         // We are inside the cellForRowAtIndexPath method that gets called everything we layout a cell
         // Because we are reusing "postCell" cells, a reused cell might have an image already set on it.
         // This always resets the image to blank, waits for the image to download, and then sets it
-        cell.selfieImageView.image = nil
-        
-        let imageFile = post.image
-        imageFile.getDataInBackground(block: {(data, error) -> Void in
-            if let data = data {
-                let image = UIImage(data: data)
-                cell.selfieImageView.image = image
-            }
-        })
-        
-        cell.usernameLabel.text = post.user.username
-        cell.commentLabel.text = post.comment
-        
+//        cell.selfieImageView.image = nil
+//        
+//        let imageFile = post.image
+//        imageFile.getDataInBackground(block: {(data, error) -> Void in
+//            if let data = data {
+//                let image = UIImage(data: data)
+//                cell.selfieImageView.image = image
+//            }
+//        })
+//        
+//        cell.usernameLabel.text = post.user.username
+//        cell.commentLabel.text = post.comment
+//        
         return cell
         
     }

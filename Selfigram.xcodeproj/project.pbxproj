@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		213240D32059F14C00FA9F4F /* SelfieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213240D22059F14C00FA9F4F /* SelfieCell.swift */; };
+		21781D3D206C5B08001E2520 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21781D3C206C5B08001E2520 /* Activity.swift */; };
 		21A27EBF2050CAC000E0B082 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A27EBE2050CAC000E0B082 /* User.swift */; };
 		21A27EC12050CC1400E0B082 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A27EC02050CC1400E0B082 /* Post.swift */; };
 		21A7ED81204E956200A5C65E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A7ED80204E956200A5C65E /* AppDelegate.swift */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		213240D22059F14C00FA9F4F /* SelfieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfieCell.swift; sourceTree = "<group>"; };
+		21781D3C206C5B08001E2520 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Activity.swift; path = /Users/willchew/Desktop/Selfigram/Selfigram/Activity.swift; sourceTree = "<absolute>"; };
 		21A27EBE2050CAC000E0B082 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		21A27EC02050CC1400E0B082 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		21A7ED7D204E956200A5C65E /* Selfigram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Selfigram.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +153,7 @@
 				21A7ED82204E956200A5C65E /* ViewController.swift */,
 				21A27EBE2050CAC000E0B082 /* User.swift */,
 				21A27EC02050CC1400E0B082 /* Post.swift */,
+				21781D3C206C5B08001E2520 /* Activity.swift */,
 				21C85196205746BE005FA4CF /* FeedViewController.swift */,
 				213240D22059F14C00FA9F4F /* SelfieCell.swift */,
 				21A7ED84204E956200A5C65E /* Main.storyboard */,
@@ -486,6 +489,7 @@
 				21A7ED83204E956200A5C65E /* ViewController.swift in Sources */,
 				21A7ED81204E956200A5C65E /* AppDelegate.swift in Sources */,
 				21C85197205746BE005FA4CF /* FeedViewController.swift in Sources */,
+				21781D3D206C5B08001E2520 /* Activity.swift in Sources */,
 				21A27EC12050CC1400E0B082 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
