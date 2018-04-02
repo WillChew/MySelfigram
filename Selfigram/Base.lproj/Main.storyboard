@@ -95,6 +95,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="postCell" rowHeight="320" id="jx4-xp-7Ir" customClass="SelfieCell" customModule="Selfigram" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="320"/>
@@ -133,6 +134,13 @@
                                                 <action selector="likeButtonClicked:" destination="jx4-xp-7Ir" eventType="touchUpInside" id="c5m-v7-eZ8"/>
                                             </connections>
                                         </button>
+                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hearts-on" translatesAutoresizingMaskIntoConstraints="NO" id="Tkl-za-a0F">
+                                            <rect key="frame" x="175.5" y="115" width="23" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="JqH-De-iMC"/>
+                                                <constraint firstAttribute="width" constant="23" id="g47-Bt-rZU"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="t04-Mo-PWD" firstAttribute="leading" secondItem="een-Gw-ZSb" secondAttribute="leading" id="3mZ-58-cpi"/>
@@ -144,10 +152,13 @@
                                         <constraint firstItem="XZ7-FI-9F6" firstAttribute="top" secondItem="X4p-Pv-o3h" secondAttribute="bottom" constant="8" id="Wvo-nh-dmZ"/>
                                         <constraint firstItem="X4p-Pv-o3h" firstAttribute="leading" secondItem="een-Gw-ZSb" secondAttribute="leadingMargin" id="e1G-Lf-zSX"/>
                                         <constraint firstItem="mxD-SE-nwc" firstAttribute="top" secondItem="t04-Mo-PWD" secondAttribute="bottom" constant="8" id="elY-yd-9jr"/>
+                                        <constraint firstItem="Tkl-za-a0F" firstAttribute="centerY" secondItem="t04-Mo-PWD" secondAttribute="centerY" id="seM-cE-A6S"/>
+                                        <constraint firstItem="Tkl-za-a0F" firstAttribute="centerX" secondItem="t04-Mo-PWD" secondAttribute="centerX" id="zpt-zZ-aTc"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="commentLabel" destination="XZ7-FI-9F6" id="lTt-rp-NHO"/>
+                                    <outlet property="heartAnimationView" destination="Tkl-za-a0F" id="p3U-ec-o6P"/>
                                     <outlet property="likeButton" destination="mxD-SE-nwc" id="nNn-aO-aEK"/>
                                     <outlet property="selfieImageView" destination="t04-Mo-PWD" id="l5c-a4-KpQ"/>
                                     <outlet property="usernameLabel" destination="X4p-Pv-o3h" id="wWB-P1-xPH"/>
@@ -157,6 +168,7 @@
                         <connections>
                             <outlet property="dataSource" destination="cBk-fk-hTy" id="vW8-Gn-Wqa"/>
                             <outlet property="delegate" destination="cBk-fk-hTy" id="au3-pv-WbA"/>
+                            <outletCollection property="gestureRecognizers" destination="OJM-wG-A6D" appends="YES" id="HeI-is-XiX"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="NDT-03-rlq">
@@ -167,26 +179,46 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="RHS-Fw-O55">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="refreshPulled:" destination="cBk-fk-hTy" eventType="valueChanged" id="afO-2Q-svf"/>
+                        </connections>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JcR-Vq-Hi9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="OJM-wG-A6D">
+                    <connections>
+                        <action selector="doubleTappedSelfie:" destination="cBk-fk-hTy" id="hMF-ap-gqz"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="500" y="-1042.128935532234"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Activity View Controller-->
         <scene sceneID="3VY-2L-txY">
             <objects>
-                <tableViewController id="f9B-8Q-DyW" sceneMemberID="viewController">
+                <tableViewController id="f9B-8Q-DyW" customClass="ActivityViewController" customModule="Selfigram" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="OzC-F2-bgN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="JsS-UF-neF">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="activityCell" textLabel="4IG-C7-CEy" style="IBUITableViewCellStyleDefault" id="JsS-UF-neF" customClass="ActivityCell" customModule="Selfigram" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JsS-UF-neF" id="aat-8i-i8I">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4IG-C7-CEy">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>

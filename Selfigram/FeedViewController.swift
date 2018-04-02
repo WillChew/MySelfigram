@@ -13,14 +13,14 @@ class FeedViewController: UITableViewController, UIImagePickerControllerDelegate
     var words = ["Hello", "my", "name", "is", "Selfigram"]
     var posts = [Post]()
     
-    override func viewDidLoad() {
-            super.viewDidLoad()
-        
+    
+    func getPosts(){
         if let query = Post.query(){
             query.order(byDescending: "createdAt")
             query.includeKey("user")
             
             query.findObjectsInBackground(block: {(posts, error) -> Void in
+                self.refreshControl?.endRefreshing()
                 if let posts = posts as? [Post]{
                     self.posts = posts
                     self.tableView.reloadData()
@@ -28,6 +28,30 @@ class FeedViewController: UITableViewController, UIImagePickerControllerDelegate
             })
         }
     }
+    
+    @IBAction func doubleTappedSelfie(_ sender: UITapGestureRecognizer) {
+    //get the location (x,y) position on our tableview where we have clicked
+        let tapLocation = sender.location(in:tableView)
+    //based on the x,y position we can get the indexPath for where we are at
+        if let indexPathAtTapLocation = tableView.indexPathForRow(at: tapLocation){
+            
+            //based on the indexPath we can get the specific cell that is being tapped
+            let cell = tableView.cellForRow(at: indexPathAtTapLocation) as! SelfieCell
+            
+            
+            //let a method on that cell.
+            cell.tapAnimation()
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        getPosts()
+    }
+    @IBAction func refreshPulled(_ sender: UIRefreshControl) {
+        getPosts()
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -55,19 +79,19 @@ class FeedViewController: UITableViewController, UIImagePickerControllerDelegate
         // We are inside the cellForRowAtIndexPath method that gets called everything we layout a cell
         // Because we are reusing "postCell" cells, a reused cell might have an image already set on it.
         // This always resets the image to blank, waits for the image to download, and then sets it
-//        cell.selfieImageView.image = nil
-//        
-//        let imageFile = post.image
-//        imageFile.getDataInBackground(block: {(data, error) -> Void in
-//            if let data = data {
-//                let image = UIImage(data: data)
-//                cell.selfieImageView.image = image
-//            }
-//        })
-//        
-//        cell.usernameLabel.text = post.user.username
-//        cell.commentLabel.text = post.comment
-//        
+        //        cell.selfieImageView.image = nil
+        //
+        //        let imageFile = post.image
+        //        imageFile.getDataInBackground(block: {(data, error) -> Void in
+        //            if let data = data {
+        //                let image = UIImage(data: data)
+        //                cell.selfieImageView.image = image
+        //            }
+        //        })
+        //
+        //        cell.usernameLabel.text = post.user.username
+        //        cell.commentLabel.text = post.comment
+        //
         return cell
         
     }
