@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/willchew/Desktop/Selfigram/Selfigram/Activity.swift">
-   </FileRef>
-   <FileRef
       location = "group:Selfigram.xcodeproj">
    </FileRef>
    <FileRef

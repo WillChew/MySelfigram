@@ -17,6 +17,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+         navigationItem.titleView = UIImageView(image: UIImage(named: "Selfigram-logo"))
+        
         if let user = PFUser.current() {
             usernameLabel.text = user.username
             
